@@ -1,5 +1,5 @@
 FROM --platform=linux/amd64 ubuntu:22.04 as builder
-RUN apt update && apt install -y curl git unzip xz-utils zip libglu1-mesa wget cmake openjdk-17-jdk
+RUN apt update && apt install -y curl git unzip xz-utils zip libglu1-mesa wget openjdk-17-jdk cmake ninja-build
 RUN useradd -ms /bin/bash user
 USER user
 WORKDIR /home/user
