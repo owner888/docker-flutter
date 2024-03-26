@@ -12,11 +12,13 @@ RUN mkdir -p .android && touch .android/repositories.cfg
 RUN wget -O cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
 RUN unzip cmdline-tools.zip && rm cmdline-tools.zip
 RUN mv cmdline-tools Android/sdk/cmdline-tools/latest
-RUN cd Android/sdk/tools/bin && yes | ./sdkmanager --licenses
-RUN cd Android/sdk/tools/bin && ./sdkmanager "build-tools;29.0.2" "patcher;v4" "platform-tools" "platforms;android-29" "sources;android-29"
+RUN cd ~/Android/sdk/cmdline-tools/latest && yes | ./sdkmanager --licenses
+# RUN ./sdkmanager "build-tools;29.0.2" "platform-tools" "platforms;android-29" "sources;android-29" "patcher;v4"
+RUN ./sdkmanager "build-tools;29.0.2" "platform-tools" "platforms;android-29" "sources;android-29"
 ENV PATH "$PATH:/home/user/Android/sdk/platform-tools"
 
 # Installing Flutter SDK
+RUN cd ~
 RUN git clone https://github.com/flutter/flutter.git
 ENV PATH "$PATH:/home/user/flutter/bin"
 RUN flutter channel stable
